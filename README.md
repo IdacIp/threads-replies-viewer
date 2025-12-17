@@ -67,13 +67,13 @@
    **Cloudflare Tunnel (用於 OAuth 回調)**
    ```bash
    cd Threads
-   cloudflared tunnel --url http://localhost:8000 --hostname your-subdomain.boatswain.cc
+   cloudflared tunnel --url http://localhost:8000 --hostname your-subdomain.yourdomain.com
    ```
 
 4. **存取應用程式**
    - 前端：http://localhost:5173
    - 後端：http://localhost:8000
-   - 公開 URL：https://your-subdomain.boatswain.cc
+   - 公開 URL：https://your-subdomain.yourdomain.com
 
 ## 📱 功能特色
 
@@ -119,7 +119,7 @@
 
 ### 網路
 - **Tunnel**: Cloudflare Tunnel (cloudflared)
-- **Domain**: boatswain.cc
+- **Domain**: yourdomain.com
 
 ## 🔒 安全性與隱私
 
