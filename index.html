@@ -1,0 +1,19 @@
+<!-- templates/index.html -->
+<form id="myform">
+  <input type="number" name="limit" value="5">
+  <button type="submit">查詢</button>
+</form>
+<pre id="output"></pre>
+<script>
+document.getElementById('myform').onsubmit = async function(e){
+  e.preventDefault();
+  let limit = this.limit.value;
+  let res = await fetch('/threads', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({limit})
+  });
+  let data = await res.json();
+  document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+};
+</script>

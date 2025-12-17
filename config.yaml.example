@@ -1,0 +1,9 @@
+tunnel: your-tunnel-name
+credentials-file: ~/.cloudflared/your-credentials-file.json
+
+ingress:
+  - hostname: your-frontend-domain.com      # 前端 Vite+Vue
+    service: http://localhost:5173
+  - hostname: your-backend-domain.com       # 後端 FastAPI
+    service: http://localhost:8000
+  - service: http_status:404
