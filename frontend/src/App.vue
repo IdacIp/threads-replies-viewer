@@ -200,18 +200,18 @@ const formatDateTime = (timestamp) => {
 }
 
 const connectThreads = () => {
-  window.location.href = 'https://oauth.boatswain.cc/api/auth/threads/start'
+  window.location.href = 'https://subdomain.yourdomain.com/api/auth/threads/start'
 }
 
 const logout = () => {
-  window.location.href = 'https://oauth.boatswain.cc/logout'
+  window.location.href = 'https://subdomain.yourdomain.com/logout'
 }
 
 const checkAuth = async () => {
   console.log('🔍 Vue 載入，開始 checkAuth...')
 
   try {
-    const res = await fetch('https://oauth.boatswain.cc/api/auth/status', {
+    const res = await fetch('https://subdomain.yourdomain.com/api/auth/status', {
       credentials: 'include'
     })
     const data = await res.json()
@@ -247,7 +247,7 @@ const searchThreads = async () => {
       q: form.value.keywords || ""
     })
 
-    const res = await fetch(`https://oauth.boatswain.cc/api/threads?${params}`, {
+    const res = await fetch(`https://subdomain.yourdomain.com/api/threads?${params}`, {
       credentials: 'include'
     })
 
