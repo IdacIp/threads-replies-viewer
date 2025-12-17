@@ -14,7 +14,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://127.0.0.1:5173",    # local development
-        "https://lumine.boatswain.cc",   # tunnel frontend
+        "https://yourdomain.com",   # tunnel frontend
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -93,7 +93,7 @@ def start_oauth():
 @app.get("/api/auth/threads/callback")
 async def oauth_callback(request: Request, code: str = None, error: str = None):
     if error or not code:
-        return RedirectResponse("https://lumine.boatswain.cc/?login=failed", status_code=302)
+        return RedirectResponse("https://subdomain.yourdomain.com/?login=failed", status_code=302)
 
     try:
         token_data = exchange_code_for_token(code)
@@ -103,7 +103,7 @@ async def oauth_callback(request: Request, code: str = None, error: str = None):
 
         print(f"✅ OAuth 成功，儲存 cookie: {final_token[:20]}...")
 
-        response = RedirectResponse("https://lumine.boatswain.cc/?login=success", status_code=302)
+        response = RedirectResponse("https://subdomain.yourdomain.com/?login=success", status_code=302)
         response.set_cookie(
             key="threads_session",
             value=final_token,
@@ -116,13 +116,13 @@ async def oauth_callback(request: Request, code: str = None, error: str = None):
 
     except Exception as e:
         print(f"💥 OAuth 錯誤: {e}")
-        return RedirectResponse("https://lumine.boatswain.cc/?login=failed", status_code=302)
+        return RedirectResponse("https://subdomain.yourdomain.com/?login=failed", status_code=302)
 
 
 @app.get("/logout")
 def logout():
     """登出 - 清 cookie"""
-    response = RedirectResponse("https://lumine.boatswain.cc/")
+    response = RedirectResponse("https://subdomain.yourdomain.com/")
     response.delete_cookie("threads_session")
     print("🔓 已登出，清空 cookie")
     return response
